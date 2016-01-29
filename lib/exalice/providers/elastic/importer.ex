@@ -5,8 +5,6 @@ defmodule ExAlice.Geocoder.Providers.Elastic.Importer do
 
   require Tirexs.ElasticSearch
 
-  alias ExAlice.Geocoder.Providers.Elastic.Indexer
-
   def import(file \\ false) do
     unless is_binary(file) do
       file = ExAlice.Geocoder.config(:file)
@@ -23,7 +21,7 @@ defmodule ExAlice.Geocoder.Providers.Elastic.Importer do
 
     read_file(file)
     |> chunk(chunk_number)
-    |> index
+    |> Enum.map(fn chunk -> enqueue(chunk) end)
   end
 
   def bootstrap_index(index_name, doc_type) do
@@ -59,15 +57,14 @@ defmodule ExAlice.Geocoder.Providers.Elastic.Importer do
 
   def read_file(file) do
     File.stream!(file)
-    |> Enum.map(fn content -> String.split(content, "\n", trim: true) end)
+    |> Stream.map(fn content -> String.split(content, "\n", trim: true) end)
   end
 
   def chunk(data, chunk_number) do
     Stream.chunk(data, chunk_number, chunk_number, [])
   end
 
-  def index(chunk) do
-    IO.puts "Indexing chunk..."
-    Indexer.index(chunk)
+  def enqueue(chunk) do
+    Toniq.enqueue(IndexerWorker, %{chunk: chunk})
   end
 end

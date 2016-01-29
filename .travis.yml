@@ -4,4 +4,5 @@ elixir:
   - 1.2.1
 services:
   - elasticsearch
+  - redis
 script: "mix test"
