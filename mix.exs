@@ -14,7 +14,7 @@ defmodule ExAlice.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :httpoison],
+    [applications: [:logger, :httpoison, :toniq, :uuid],
      mod: {ExAlice, []}]
   end
 
@@ -35,8 +35,8 @@ defmodule ExAlice.Mixfile do
       {:towel, "~> 0.2"},
       {:uuid, "~> 1.1.1"},
       {:credo, "~> 0.1.9", only: [:dev, :test]},
-      {:tirexs, "~> 0.7.4"}
-
+      {:tirexs, "~> 0.7.4"},
+      {:toniq, "~> 1.0"}
     ]
   end
 end

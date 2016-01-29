@@ -1,7 +1,9 @@
 %{"bunt": {:hex, :bunt, "0.1.4"},
   "certifi": {:hex, :certifi, "0.3.0"},
   "credo": {:hex, :credo, "0.1.10"},
+  "eredis": {:hex, :eredis, "1.0.8"},
   "exjsx": {:hex, :exjsx, "3.2.0"},
+  "exredis": {:hex, :exredis, "0.2.3"},
   "hackney": {:hex, :hackney, "1.4.7"},
   "httpoison": {:hex, :httpoison, "0.8.0"},
   "idna": {:hex, :idna, "1.0.2"},
@@ -10,5 +12,6 @@
   "poison": {:hex, :poison, "1.5.0"},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"},
   "tirexs": {:hex, :tirexs, "0.7.4"},
+  "toniq": {:hex, :toniq, "1.0.3"},
   "towel": {:hex, :towel, "0.2.1"},
   "uuid": {:hex, :uuid, "1.1.2"}}
